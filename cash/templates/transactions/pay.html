@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+	pay
+{% endblock Title %}
+
+{% block contents %}
+<div class="desktop">
+    <a href="/transactions" class="back-pay">Back</a>
+    <div class="info-pay">
+        <p id="pay-total">Total Harga</p>
+        <h1 id="pay-price">RP.{{tprice}}<h1>
+
+        <a href="{% url 'send_command' %}" class='btn btn-lg'>
+            <img src="{% static 'img/face.png' %}" id="face-icon"/>
+        </a>
+        <p id="face-p">Pay with face-recognition</p>
+    </div>
+
+    <div class="qr">
+        {% load qr_code %}
+        {% qr_from_text data size="l" %}
+    </div>
+
+    <h1>{{err_msg}}</h1>
+
+</div>
+
+<div class="mobile">    
+
+</div>
+	
+{% endblock contents %}

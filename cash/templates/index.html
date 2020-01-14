@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+
+
+<div class="desktop">
+    <h1 id="judul">{{judul}}</h1>
+    {% if user.is_authenticated %}
+      Hi {{ user.username }}!
+      <div>
+        <h1>{{content}}</h1>
+      </div>
+
+    {% else %}
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}" class="send-btn">login</a>
+    {% endif %}
+</div>
+
+<div class="mobile">
+  <div class="header">
+    <h1 id="judul">{{judul}}</h1>
+    {% if user.is_authenticated %}
+    <a href="{% url 'logout' %}" class="logout">logout</a>
+    <div class="background">
+    </div>
+    <!--<div class="background1">
+    </div>-->
+    <div class="card">
+      <h1 id="logo-card">{{user.first_name}} {{user.last_name}}</h1>
+      <p id="balance">Balance</p>
+      <h1 id="nominal">Rp. {{balance}}</h1>
+    </div>
+    <div class="chart-nav">
+    <a href="/"><i style="font-size:30px;color:black" class="fa">&#xf201;</i></a>
+    </div>
+    <div class="account-nav">
+    <a href="/"><i style='font-size:30px;color:black' class='far'>&#xf007;</i></i></a>
+    </div>
+      <!--<p id="visa"><i class="fa fa-cc-visa" style="font-size:40px;color:white"></i></p>-->
+    
+    <div class="m-nav">
+      <div class="pay-btn">
+        <a href="/pay"><i class="fa fa-credit-card" style="font-size:20px;color:white"></i></a>
+      </div>
+      <div class="left-side-btn">
+        <a href="/"><i style='font-size:20px;color:black' class='fas'>&#xf0c9;</i></a>
+      </div>
+      <div class="refresh-btn">
+        <a href="/"><i style='font-size:20px;color:black' class='fas'>&#xf1da;</i></a>
+      </div>
+    </div> 
+    <div class="recent">
+    <h1 id="recent">Recent<a href="/transactions" class="more">See All</a></h1>
+    {% for post in posts %}
+    {% if post.sender == user.username %}
+    {% if post.place != user.username %}
+    <div class="recent-box">
+        <h2 id="recent-place">{{post.place}}</h2>
+        <p id="recent-nominal">-Rp.{{post.nominal}}</p>
+        <p id="recent-date">{{post.date}}</p>
+    </div>
+    {% else %}
+    <div class="recent-box">
+        <h2 id="recent-place">{{post.place}}</h2>
+        <p id="recent-nominal">Rp.{{post.nominal}}</p>
+        <p id="recent-date">{{post.date}}</p>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% endfor %}
+    
+    </div>  
+  </div>
+  
+
+    {% else %}
+    <div class="not-logged">
+      <p>You are not logged in</p>
+      <a href="{% url 'login' %}" id="register" class="send-btn">login</a>
+      <a href="register" id="register" class="send-btn">register</a>
+    </div>
+    {% endif %}
+</div>
+
+{% endblock contents %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block Title %}
+	{{webname}}
+{% endblock Title %}
+
+{% block contents %}
+<div class="mobile">
+	<div id="my_camera"></div>
+    <a href="" class="pay">/pay</a>
+    <a href="/" class="back">back/</a>
+</div>
+
+	<!-- First, include the Webcam.js JavaScript Library -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/webcamjs/1.0.25/webcam.min.js"></script>
+	
+	<!-- Configure a few settings and attach camera -->
+	<script language="JavaScript">
+		Webcam.set({
+			width: 561,
+			height: 240,
+			image_format: 'jpeg',
+			jpeg_quality: 90
+		});
+		Webcam.attach( '#my_camera' );
+	</script>
+	
+{% endblock contents %}s

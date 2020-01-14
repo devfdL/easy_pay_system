@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+<div class="desktop">
+<div class="form">
+    <form method="POST">
+        {% csrf_token %}
+            <table>{{bill_box}}</table>
+        <button type="submit" class="send-btn" id="btn-pay">Next</button>
+    </form>
+</div>
+</div>
+
+<div class="mobile">    
+<h1 id="judul-recent">{{judul}}</h1>
+<a href="/" class="back-recent">back</a>
+<div class="recentbox">
+{% for post in posts %}
+    {% if post.sender == user.username %}
+    {% if post.place != user.username %}
+    <div class="recent-box">
+        <h2 id="recent-place">{{post.place}}</h2>
+        <p id="recent-nominal">-Rp.{{post.nominal}}</p>
+        <p id="recent-date">{{post.date}}</p>
+    </div>
+    {% else %}
+    <div class="recent-box">
+        <h2 id="recent-place">{{post.place}}</h2>
+        <p id="recent-nominal">Rp.{{post.nominal}}</p>
+        <p id="recent-date">{{post.date}}</p>
+    </div>
+    {% endif %}
+    {% endif %}
+  
+{% endfor %}
+</div>
+</div>
+	
+{% endblock contents %}

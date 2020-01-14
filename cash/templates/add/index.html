@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block Title %}
+	{{webname}}-{{judul}}
+{% endblock Title %}
+
+{% block contents %}
+<div class="">
+    <h1>Add Account</h1>
+    <form method="POST">
+        {% csrf_token %}
+            <table>{{acc_box}}</table>
+        <button type="submit" class="send-btn" id="">Send</button>
+    </form>
+</div>
+{% endblock contents %}

@@ -1,0 +1,68 @@
+
+<nav class="navbar">
+		<div class="container">
+			<a class="brand" >
+			<h1>Cashier</h1>
+			</a>
+			
+				<ul id="menu">
+{% if user.is_authenticated and user.username != 'admin1'%}
+				<div class="menu">
+    				<li class="nav-item">
+						<a class="nav-link" id="homelink" href="/">
+							Home
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a class="nav-link" href="/transactions">
+							Transactions
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{% url 'logout' %}" class="nav-link">logout</a>
+					</li>
+
+	
+{% else %}
+{% if user.is_authenticated and user.username == 'admin1' %}
+					<li class="nav-item">
+						<a class="nav-link" id="homelink" href="/">
+							Home
+						</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="/add" class="nav-link">add account</a>
+					</li>
+
+					<li class="nav-item">
+						<a href={% url 'addfund' %} class="nav-link">add fund</a>
+					</li>
+
+					<li class="nav-item">
+						<a href="{% url 'logout' %}" class="nav-link">logout</a>
+					</li>
+{% else %}
+  					<li class="nav-item">
+  						<a href="{% url 'login' %}" class="nav-link">
+						  Login
+						</a>
+					</li>
+
+					<li class="nav-item">
+  						<a href="register" class="nav-link">
+						  Signup
+						</a>
+					</li>
+				
+{% endif %}
+{% endif %}
+
+
+				</ul>
+				</div>
+			
+
+		</div>
+</nav>
