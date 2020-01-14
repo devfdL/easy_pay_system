@@ -12,11 +12,14 @@
 * OpenCv
     $ pip install opencv-python
 * django-qrcode
-    $ pip install django-qrcode
+    $ pip install django-qr-code
 * PIL / Pillow
     $ pip install Pillow
 * Numpy
     $ pip install numpy
+* Imutils
+    $ pip install imutils
+
 ```
 
 ## To Run the app
