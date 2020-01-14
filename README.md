@@ -11,6 +11,7 @@
 ```
 * OpenCv
     $ pip install opencv-python
+    $ pip install opencv-contrib-python --user
 * django-qrcode
     $ pip install django-qr-code
 * PIL / Pillow
